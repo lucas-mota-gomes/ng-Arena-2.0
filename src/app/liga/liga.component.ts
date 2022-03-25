@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LigaComponent implements OnInit {
   currentTab = 0;
+  currentTeam = 0;
 
   constructor() { }
 
