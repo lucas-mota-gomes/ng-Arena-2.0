@@ -12,6 +12,7 @@ export class LigaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

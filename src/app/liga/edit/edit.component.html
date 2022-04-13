@@ -1,0 +1,129 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+  rel="stylesheet">
+
+
+<main class="main-profile-section d-md-flex my-5">
+  <section class="left-section ww-100 ww-md-25 d-flex flex-column justify-content-start align-items-center">
+    <div class="background-black radius-5 w-100 mb-3 cursor-pointer top-left-side-menu">
+      <div (click)="submenu = 0" [ngClass]="{'selecionado' : submenu === 0}" class="menus selecionado"><span>Dados da
+          liga</span></div>
+      <div (click)="submenu = 1" [ngClass]="{'selecionado' : submenu === 1}" class="menus"><span>Conteúdos da
+          Liga</span></div>
+      <div (click)="submenu = 2" [ngClass]="{'selecionado' : submenu === 2}" class="menus"><span>Equipes</span></div>
+    </div>
+  </section>
+  <!-- Detalhes do torneio -->
+  <section *ngIf="submenu === 0" class="right-section-tournament">
+    <div class="d-flex flex-wrap">
+      <div class="mx-3">Img</div>
+      <div class="d-md-flex top-form flex-column flex-md-grow-1">
+        <nick-input id="cpf" placeholder="CPF" class="ww-100 ww-md-60 beta-mr-28 d-block w-100 beta-mr-28">
+          <nick-group>
+            <div class="form-group">
+              <label for="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb">Descrição </label>
+              <small class="field-required">(Obrigatório)</small>
+              <input class="form-control ng-untouched ng-pristine ng-invalid" id="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb"
+                name="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb" placeholder="CPF" type="text-area">
+            </div>
+          </nick-group>
+        </nick-input>
+        <nick-input id="cpf" placeholder="CPF" class="ww-100 ww-md-60 beta-mr-28 d-block w-100 my-3">
+          <nick-group>
+            <div class="form-group"><label for="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb">Nome da Liga</label>
+              <small class="field-required">(Obrigatório)</small>
+              <textarea class="form-control ng-untouched ng-pristine ng-invalid"
+                id="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb" name="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb"
+                placeholder="Escreva a descrição que aparecerá nos detalhes do correio" type="text"></textarea>
+            </div>
+          </nick-group>
+        </nick-input>
+      </div>
+    </div>
+    <div class="tournament-bottom">
+      <p class="text-center fw-bold ww-100">Ativos da Liga</p>
+      <div class="d-flex flex-wrap justify-content-center">
+        <button (click)="ativoAtual = 0" [ngClass]="{'selecionado' : ativoAtual === 0}"
+          class="arena-border">Futuros</button>
+        <button (click)="ativoAtual = 1" [ngClass]="{'selecionado' : ativoAtual === 1}"
+          class="selecionado arena-border">Ações</button>
+        <button (click)="ativoAtual = 2" [ngClass]="{'selecionado' : ativoAtual === 2}"
+          class="arena-border">Criptomoedas</button>
+        <button (click)="ativoAtual = 3" [ngClass]="{'selecionado' : ativoAtual === 3}"
+          class="arena-border">Flls</button>
+      </div>
+    </div>
+    <nick-select id="cpf" placeholder="CPF" class="ww-100 ww-md-25 beta-mr-28 d-block my-5">
+      <nick-group>
+        <div class="form-group"><label for="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb">Indentidade Visual</label>
+          <small class="field-required">(Obrigatório)</small>
+          <select class="form-control ng-untouched ng-pristine ng-invalid" id="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb"
+            name="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb" placeholder="CPF" type="text"></select>
+        </div>
+      </nick-group>
+    </nick-select>
+    <div class="d-flex justify-content-end align-items-center">
+      <button class="mx-2 return-btn">Voltar</button>
+      <button class="save-btn">Salvar Dados</button>
+    </div>
+  </section>
+
+  <section *ngIf="submenu === 1" class="right-section-tournament">
+    <!-- Dados da Liga -->
+    <div class="d-flex flex-wrap justify-content-center">
+      <div class="text-center" style="width: 50%">
+        <p class="fs-18"><b>Conteúdos educativos</b></p>
+        <p>Adicione, edite e gerencie o conteúdo educativo listado para os usuários <br> na sua liga. Esses conteúdos
+          ficam dis poníveis na Aba "Aprenda" da sua Liga</p>
+      </div>
+      <button class="position-absolute" style="right: 0;margin-right: 3rem;">Novo Item</button>
+    </div>
+    <ng-container>
+      <hr>
+      <div class="d-flex flex-wrap justify-content-xl-between justify-content-center">
+        <img class="rounded mx-3"
+          src="https://media.istockphoto.com/photos/trading-and-investment-concept-trader-silhouette-with-digital-tablet-picture-id1310316502?b=1&k=20&m=1310316502&s=170667a&w=0&h=qxte3YLpyxVo66myEYIVfAqwrJTetV54gEu6_P86UTw="
+          width="300px" height="150px">
+        <div class="mx-3 tournament-content-description">
+          <p class="fs-18"><b>Primeiros Passos - Criptomoedas</b></p>
+          <p class="text-center">Aprenda como iniciar no mercado de criptomoedas com profissionais <br>renomados do
+            mercado! São 16 horas de mentoria exclusiva e gratuita!</p>
+          <a><span>URL Destino: </span>www.investcursos.com/trading</a>
+        </div>
+        <div class="d-flex flex-column tournament-content-buttons">
+          <button class="d-flex align-items-center justify-content-center">Editar<span
+              class="material-icons-outlined">mode_edit</span></button>
+          <button>Excluir</button>
+        </div>
+      </div>
+      <hr>
+    </ng-container>
+  </section>
+
+  <!-- Equipes -->
+  <section *ngIf="submenu === 2" class="right-section-tournament">
+    <div class="d-flex align-items-xl-between align-items-center flex-column ww-100">
+      <button class="ww-10 align-self-xl-end selecionado">Nova Equipe</button>
+    </div>
+    <ng-container>
+      <hr>
+      <div
+        class="d-flex flex-wrap justify-content-xl-between justify-content-center flex-lg-row flex-column align-items-center text-lg-start text-center">
+        <img class="rounded mx-3"
+          src="https://media.istockphoto.com/photos/trading-and-investment-concept-trader-silhouette-with-digital-tablet-picture-id1310316502?b=1&k=20&m=1310316502&s=170667a&w=0&h=qxte3YLpyxVo66myEYIVfAqwrJTetV54gEu6_P86UTw="
+          width="200px" height="200px">
+        <div class="mx-3 tournament-content-description">
+          <p class="fs-18 my-2 text-lg-start text-center"><b>Investidores USP</b></p>
+          <p class="text-lg-start text-center">Equipe dos alunos da faculdade USP, focados em mercado futuro.</p>
+          <p class="mx-5 mt-5">Membros : 35</p>
+        </div>
+        <div class="d-flex flex-column align-items-center align-items-xl-end tournament-content-buttons my-2 ww-15">
+          <button class="with-icon ">Editar <span class="material-icons-outlined ms-2">mode_edit</span></button>
+          <button>Excluir</button>
+          <button class="ww-xl-100">Ver Mais</button>
+        </div>
+      </div>
+      <hr>
+    </ng-container>
+  </section>
+</main>

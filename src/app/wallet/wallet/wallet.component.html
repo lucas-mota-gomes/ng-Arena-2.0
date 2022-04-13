@@ -1,0 +1,261 @@
+<section>
+  <!-- ANCHOR Card topo -->
+  <div class="card-gradient w-100 p-3 text-start mb-2">
+    <h5 class="fw-bold">Carteira</h5>
+    <p>Visualize o extrato e realize depósitos e saques via PIX em instantes.</p>
+  </div>
+  <!-- ANCHOR Cards saldo + botões -->
+  <div class="cards mb-3">
+    <div class="row mb-3">
+      <div class="col mb-3 mb-md-0">
+        <div class="card-gradient w-100 flex-column all-center p-3 h-100 text-center mb-2">
+          <h5 class="fw-bold mb-auto">Saldo</h5>
+          <h3 class="fw-bold">R$ 120,00</h3>
+          <i class="material-icons mb-auto arena-orange-gradient-text">monetization_on</i>
+        </div>
+      </div>
+      <div class="col mb-3 mb-md-0">
+        <div class="card-gradient w-100 flex-column all-center h-100 p-3 text-start mb-2">
+          <h5 class="fw-bold align-self-top mb-auto">Crédito</h5>
+          <h3 class="fw-bold">T$ 20,00</h3>
+          <i class="material-icons arena-blue-gradient-text mb-auto">monetization_on</i>
+        </div>
+      </div>
+      <div class="col col-lg-6 mb-3 mb-md-0">
+        <div class="card-gradient w-100 flex-column all-center h-100 p-3 text-start mb-2">
+          <h5 class="fw-bold mb-auto">Resgate</h5>
+          <p class="fw-bold mb-auto">Escolha para qual chave PIX os resgates serão enviados</p>
+          <p>
+            <nick-select>
+              <nick-group>
+                <div class="form-group"><label for="4e9bbfe6-09d3-489a-b69b-e63d66642d04">Escolha sua chave pix *
+                  </label>
+                  <small class="field-required">(Obrigatório)</small>
+                  <select class="form-control ng-pristine ng-valid ng-touched" id="4e9bbfe6-09d3-489a-b69b-e63d66642d04"
+                    name="4e9bbfe6-09d3-489a-b69b-e63d66642d04" data-dashlane-rid="b5b37e2bccd321a9"
+                    data-form-type="other">
+
+                    <option value="0">CPF</option>
+                    <option value="1">E-mail</option>
+                    <option value="2">Celular</option>
+
+                  </select>
+
+                </div>
+              </nick-group>
+            </nick-select>
+          </p>
+          <p>
+            <span class="arena-orange-text">Os dados são os mesmo do cadastro (CPF, Email e Telefone)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- ANCHOR Botões -->
+    <div class="row mb-3">
+      <div class="col mb-3 mb-md-0">
+        <button [ngClass]="{'arena-orange-gradient-background' : current === 0}" (click)="current = 0"
+          class="border-0 btn-arena-grey w-100 p-1-3 rounded-4">Extrato</button>
+      </div>
+      <div class="col mb-3 mb-md-0">
+        <button [ngClass]="{'arena-orange-gradient-background' : current === 1}" (click)="current = 1"
+          class="btn-arena-grey w-100 p-1-3 rounded-4">Depositar</button>
+      </div>
+      <div class="col mb-3 mb-md-0">
+        <button [ngClass]="{'arena-orange-gradient-background' : current === 2}" (click)="current = 2"
+          class="btn-arena-grey w-100 p-1-3 rounded-4">Sacar</button>
+      </div>
+      <div class="col col-lg-6 mb-3 mb-md-0 d-none d-md-block">
+      </div>
+    </div>
+  </div>
+
+  <!-- ANCHOR Tab 1 -->
+  <div class="wallet-tab" *ngIf="current === 0">
+    <div class="w-100 text-start">
+      <span class="fw-bold">Meu Extrato</span>
+    </div>
+    <div class="d-flex justify-content-end w-100">
+
+      <div class="w-50">
+        <div class="d-flex">
+          <div class="w-50 me-2">
+            <nick-date placeholder="Escolha uma data" class="d-block w-100">
+              <nick-group>
+                <div class="form-group"><label for="3dd2b949-ad71-4aa1-b5c5-6f03c6ef39bd">Período </label>
+                  <input bsdatepicker="" class="form-control ng-untouched ng-pristine ng-invalid"
+                    id="3dd2b949-ad71-4aa1-b5c5-6f03c6ef39bd" name="3dd2b949-ad71-4aa1-b5c5-6f03c6ef39bd"
+                    placeholder="Escolha uma data" type="text" data-dashlane-rid="3be86b6ce3329fb9"
+                    data-form-type="date" data-kwimpalastatus="alive" data-kwimpalaid="1649344483842-0">
+                  <span id="1649344483842-0" data-dashlanecreated="true"></span>
+                </div>
+              </nick-group>
+            </nick-date>
+          </div>
+          <div class="w-50">
+            <nick-select>
+              <nick-group>
+                <div class="form-group"><label for="4e9bbfe6-09d3-489a-b69b-e63d66642d04">Escolha sua chave pix *
+                  </label>
+                  <select class="form-control ng-pristine ng-valid ng-touched" id="4e9bbfe6-09d3-489a-b69b-e63d66642d04"
+                    name="4e9bbfe6-09d3-489a-b69b-e63d66642d04" data-dashlane-rid="b5b37e2bccd321a9"
+                    data-form-type="other">
+
+                    <option value="0">CPF</option>
+                    <option value="1">E-mail</option>
+                    <option value="2">Celular</option>
+
+                  </select>
+
+                </div>
+              </nick-group>
+            </nick-select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-gradient w-100 py-3 text-start my-3" style="background: #151515;">
+      <!-- Lista -->
+      <div class="w-100">
+        <table class="arena-table w-100 text-center">
+          <thead>
+            <tr style="background-color: unset">
+              <th>Data da transação</th>
+              <th>Valor</th>
+              <th>Método</th>
+              <th>Tipo</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="arena-grey-text">
+              <td>10/03/2022</td>
+              <td class="arena-orange-text">+R$ 50,00</td>
+              <td>Cartão de crédito</td>
+              <td>Depósito</td>
+              <td>
+                <span class="badge t-cripto">Recebido</span>
+              </td>
+            </tr>
+            <tr class="arena-grey-text">
+              <td>10/03/2022</td>
+              <td class="arena-orange-text">+R$ 50,00</td>
+              <td>Cartão de crédito</td>
+              <td>Depósito</td>
+              <td>
+                <span class="badge t-cripto">Recebido</span>
+              </td>
+            </tr>
+            <tr class="arena-grey-text">
+              <td>10/03/2022</td>
+              <td class="arena-orange-text">+R$ 50,00</td>
+              <td>Cartão de crédito</td>
+              <td>Depósito</td>
+              <td>
+                <span class="badge t-cripto">Recebido</span>
+              </td>
+            </tr>
+            <tr class="arena-grey-text">
+              <td>10/03/2022</td>
+              <td class="arena-orange-text">+R$ 50,00</td>
+              <td>Cartão de crédito</td>
+              <td>Depósito</td>
+              <td>
+                <span class="badge t-cripto">Recebido</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANCHOR Tab 2 -->
+  <div class="wallet-tab" *ngIf="current === 1">
+
+    <div class="card-gradient w-100 p-3 text-start my-3 text-center" style="background: #151515;">
+      <div class="d-flex flex-column flex-lg-row w-100">
+        <div class="d-flex flex-column me-lg-3">
+          <div (click)="depositTab = 0" [ngClass]="{'arena-orange-gradient-background' : depositTab === 0}"
+            class="sub-card cursor-pointer">
+            <i class="material-icons wallet-button-icon">attach_money</i>
+            <span>PIX</span>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <nick-money style="width: fit-content;">
+            <nick-group _ngcontent-dgc-c146="">
+              <div class="form-group" data-dashlane-rid="3e3fc3c4f9e139af" data-form-type="other"><label
+                  for="fa8b673d-834f-4add-aa37-81b7163e803f">Valor que deseja depositar </label>
+                <input _ngcontent-dgc-c146="" currencymask="" class="form-control ng-untouched ng-pristine ng-valid"
+                  id="fa8b673d-834f-4add-aa37-81b7163e803f" name="fa8b673d-834f-4add-aa37-81b7163e803f" placeholder=""
+                  type="text" style="text-align: left;" data-dashlane-rid="33ff290aed40853f" data-form-type="other">
+              </div>
+            </nick-group>
+          </nick-money>
+
+          <span class="my-3">Insira o valor que deseja depositar e clique em "gerar pix".</span>
+
+          <div class="d-flex flex-column flex-lg-row beta-mt-40 ng-star-inserted">
+            <nick-qrcode errorcorrectionlevel="M" size="250">
+              <qr-code>
+                <canvas height="249" width="249" class="ng-star-inserted" style="height: 249px; width: 249px;">
+                </canvas>
+              </qr-code>
+            </nick-qrcode>
+            <div class="align-self-center">
+              <span>Agora, basta escanear o QR Code ou copiar o código fornecido para prosseguir
+                com o <br>
+                pagamento na instituição financeira em que o serviço está cadastrado.</span>
+              <div class="d-flex my-3 font-weight-700 color-orange-gradient">
+                <span class="material-icons me-2">access_time </span>
+                <span> Este QR code expira em 30 minutos. Ao realizar o pagamento você será
+                  informado por e-mail.</span>
+              </div>
+              <div class="d-flex align-items-center"><span
+                  class="material-icons me-2 cursor-pointer">content_copy</span><span>Copiar
+                  código pix </span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-arena-grey p-1-3 rounded-4 mt-3" style="width: fit-content;">Gerar Pix</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ANCHOR Tab 3 -->
+  <div class="wallet-tab" *ngIf="current === 2">
+    <div class="card-gradient w-100 p-3 text-start my-3" style="background: #151515;">
+      <h5 class="fw-bold">Resgate</h5>
+      <p>
+        <span>
+          Insira o valor que deseja resgatar para que a transferencia seja realizada e enviada para sua bancária
+          cadastrada.
+          A conta destino deve ser vinculada ao mesmo CPF/CNPJ do cadastro.
+        </span>
+      </p>
+      <nick-money style="width: fit-content;">
+        <nick-group _ngcontent-dgc-c146="">
+          <div class="form-group" data-dashlane-rid="3e3fc3c4f9e139af" data-form-type="other"><label
+              for="fa8b673d-834f-4add-aa37-81b7163e803f">Valor que deseja resgatar </label>
+            <input _ngcontent-dgc-c146="" currencymask="" class="form-control ng-untouched ng-pristine ng-valid"
+              id="fa8b673d-834f-4add-aa37-81b7163e803f" name="fa8b673d-834f-4add-aa37-81b7163e803f" placeholder=""
+              type="text" style="text-align: left;" data-dashlane-rid="33ff290aed40853f" data-form-type="other">
+          </div>
+        </nick-group>
+      </nick-money>
+      <p class="mt-3">
+        <span>Tarifa PIX : R$ 1,00</span>
+      </p>
+      <div class="d-flex justify-content-end">
+        <button class="btn-arena-orange arena-orange-gradient-background p-1-3 border-0 rounded-3"
+          style="color: white">Resgatar</button>
+      </div>
+    </div>
+  </div>
+</section>
