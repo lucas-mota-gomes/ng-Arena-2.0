@@ -1,0 +1,216 @@
+<style>
+    .color-green {
+        color: #37CA69;
+    }
+    
+    .color-red {
+        color: #F68181;
+    }
+    
+    .background-green {
+        background: #37CA69;
+    }
+    
+    .background-yellow {
+        background: #FAC256;
+    }
+</style>
+<section>
+    <!-- ANCHOR Card topo -->
+    <div class="card-gradient w-100 p-3 text-start mb-2">
+        <h5 class="fw-bold">Carteira</h5>
+        <p>Visualize o extrato e realize depósitos e saques via PIX em instantes.</p>
+    </div>
+    <!-- ANCHOR Cards saldo + botões -->
+    <div class="cards mb-3">
+        <div class="row mb-3">
+            <div class="col mb-3 mb-md-0">
+                <div class="card-gradient w-100 flex-column all-center p-3 h-100 text-center mb-2">
+                    <h5 class="fw-bold mb-auto">Saldo</h5>
+                    <h3 class="fw-bold">R$ 120,00</h3>
+                    <i class="material-icons mb-auto arena-orange-gradient-text">monetization_on</i>
+                </div>
+            </div>
+            <div class="col mb-3 mb-md-0">
+                <div class="card-gradient w-100 flex-column all-center h-100 p-3 text-start mb-2">
+                    <h5 class="fw-bold align-self-top mb-auto">Crédito</h5>
+                    <h3 class="fw-bold">T$ 20,00</h3>
+                    <i class="material-icons arena-blue-gradient-text mb-auto">monetization_on</i>
+                </div>
+            </div>
+            <div class="col col-lg-6 mb-3 mb-md-0">
+                <div class="card-gradient w-100 flex-column all-center h-100 p-3 text-start mb-2">
+                    <h5 class="fw-bold mb-auto">Resgate</h5>
+                    <p class="fw-bold mb-auto">Escolha para qual chave PIX os resgates serão enviados</p>
+                    <p>
+                        <nick-select [nickCrudField]="pixChoice.pixKey" [options]="pixKeyOptions" style="width: 200%; width: auto;">
+                        </nick-select>
+                    </p>
+                    <p>
+                        <span class="arena-orange-text">Os dados são os mesmo do cadastro (CPF, Email e Telefone)</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- ANCHOR Botões -->
+        <div class="row mb-3">
+            <div class="col mb-3 mb-md-0">
+                <button [ngClass]="{'arena-orange-gradient-background' : current === 0}" (click)="current = 0" class="border-0 btn-arena-grey w-100 p-1-3 rounded-4">Extrato</button>
+            </div>
+            <div class="col mb-3 mb-md-0">
+                <button [ngClass]="{'arena-orange-gradient-background' : current === 1}" (click)="current = 1" class="btn-arena-grey w-100 p-1-3 rounded-4">Depositar</button>
+            </div>
+            <div class="col mb-3 mb-md-0">
+                <button [ngClass]="{'arena-orange-gradient-background' : current === 2}" (click)="current = 2" class="btn-arena-grey w-100 p-1-3 rounded-4">Sacar</button>
+            </div>
+            <div class="col col-lg-6 mb-3 mb-md-0 d-none d-md-block">
+            </div>
+        </div>
+    </div>
+
+    <!-- ANCHOR Tab 1 -->
+    <div class="wallet-tab" *ngIf="current === 0">
+        <div class="w-100 text-start">
+            <span class="fw-bold">Meu Extrato</span>
+        </div>
+        <div class="d-flex justify-content-start justify-content-lg-end w-100">
+            <div class="w-50">
+                <div class="d-flex">
+                    <div class="me-2">
+                        <div class="d-flex with-icon-right position-relative beta-mr-18">
+                            <nick-date [nickCrudField]="form.transactionData" placeholder="Escolha uma data"></nick-date>
+                            <span class="material-icons input-icon">today</span>
+                        </div>
+                    </div>
+                    <div class="">
+                        <nick-select [nickCrudField]="form.type" [options]="typeOptions"></nick-select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-gradient w-100 py-3 text-start my-3" style="background: #151515;">
+            <!-- Lista -->
+            <div class="w-100">
+                <table class="arena-table w-100 text-center position-relative">
+                    <thead>
+                        <tr style="background-color: unset">
+                            <th class="my-2">Data da transação</th>
+                            <th class="my-2">Valor</th>
+                            <th class="my-2 d-none d-md-block">Método</th>
+                            <th class="my-2">Tipo</th>
+                            <th class="my-2 d-none d-md-block">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let transaction of list">
+                            <tr *ngIf="transaction?.amount != 0" class="arena-grey-text">
+                                <!-- Data -->
+                                <td class="py-2 px-2 px-md-0">{{transaction?.updatedAt | date:'dd/MM/yyyy'}}</td>
+                                <!-- Valor -->
+                                <td [class.color-red]="transaction?.operationKind == 2 || transaction?.operationKind == 3 || transaction?.operationKind == 4" [class.color-green]="transaction?.operationKind == 1 || transaction?.operationKind == 0 || transaction?.operationKind == 6">
+                                    {{(transaction?.operationKind == 2 || transaction?.operationKind == 3 || transaction?.operationKind == 4 ) ? "-" : "+"}}{{transaction?.amount | currency:'BRL'}}
+                                </td>
+                                <!-- Método -->
+                                <ng-container class="desktop-only d-none d-md-block" *ngIf="transaction?.operationKind != 4 && transaction?.operationKind != 0 && transaction?.operationKind != 5 && transaction?.operationKind != 6">
+                                    <td class="py-2 px-2 px-md-0 d-none d-md-block">
+                                        {{'0dac5468-7039-449c-9e99-e886b403b399_enum.'+transaction.paymentMethod | translate}}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container class="desktop-only d-none d-md-block" *ngIf="transaction?.operationKind == 6">
+                                    <td class="py-2 px-2 px-md-0 d-none d-md-block">Admin
+                                    </td>
+                                </ng-container>
+
+                                <ng-container *ngIf="transaction?.operationKind == 4 || transaction?.operationKind == 0 || transaction?.operationKind == 5">
+                                    <td class="desktop-only d-none d-md-block"> - </td>
+                                </ng-container>
+                                <!-- Tipo -->
+                                <td class="py-2 px-2 px-md-0">{{'de1b955e-39ff-4720-b5e4-c99127d5ff20_enum.'+transaction.operationKind | translate}}
+                                </td>
+                                <!-- Status -->
+                                <td class="py-2 px-2 px-md-0 d-none d-md-block">
+                                    <div class="d-flex justify-content: center;">
+                                        <div class="d-inline color-white badge beta-px-10 beta-py-8 radius-4" [class.background-green]="transaction?.status == 4" [class.background-yellow]="transaction?.status == 0 || transaction?.status == 1 || transaction?.status == 2 || transaction?.status == 3"
+                                            [class.background-red]="transaction?.status == 5 || transaction?.status == 6 || transaction?.status == 7 || transaction?.status == 8 || transaction?.status == 9 || transaction?.status == 10">
+                                            {{'8f0ab935-7c6b-4c18-ad13-f3fd1dd147ad_enum.'+transaction?.status | translate}}
+                                        </div>
+
+                                        <div *ngIf="transaction.pix && transaction.status == 2" class="d-flex justify-content-between- align-items-center ml-1" [routerLink]="['/wallet/deposit/', transaction.pix.id]">
+                                            <i class="material-icons beta-mr-12 position-absolute ms-2" tabindex="0">remove_red_eye</i>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ANCHOR Tab 2 -->
+    <div class="wallet-tab" *ngIf="current === 1">
+
+        <div class="card-gradient w-100 p-3 text-start my-3 text-center" style="background: #151515;">
+            <div class="d-flex flex-column flex-lg-row w-100">
+                <div class="d-flex flex-column me-lg-3">
+                    <div (click)="depositTab = 0" [ngClass]="{'arena-orange-gradient-background' : depositTab === 0}" class="sub-card cursor-pointer">
+                        <i class="material-icons wallet-button-icon">attach_money</i>
+                        <span>PIX</span>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column">
+                    <nick-money class="beta-mr-50" [disabled]="rescueDone == 1" [nickCrudField]="rescue.value">
+                    </nick-money>
+
+                    <span class="my-3">Insira o valor que deseja depositar e clique em "gerar pix".</span>
+
+                    <div class="d-flex flex-column flex-lg-row beta-mt-40 ng-star-inserted">
+                        <nick-qrcode [value]="qrCode" errorCorrectionLevel="M" size="250"></nick-qrcode>
+                        <div class="align-self-center">
+                            <span>Agora, basta escanear o QR Code ou copiar o código fornecido para prosseguir
+                com o <br>
+                pagamento na instituição financeira em que o serviço está cadastrado.</span>
+                            <div class="d-flex my-3 font-weight-700 color-orange-gradient">
+                                <span class="material-icons me-2">access_time </span>
+                                <span> Este QR code expira em 30 minutos. Ao realizar o pagamento você será
+                  informado por e-mail.</span>
+                            </div>
+                            <div class="d-flex align-items-center"><span class="material-icons me-2 cursor-pointer">content_copy</span><span>Copiar
+                  código pix </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-arena-grey p-1-3 rounded-4 mt-3" style="width: fit-content;">Gerar Pix</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ANCHOR Tab 3 -->
+    <div class="wallet-tab" *ngIf="current === 2">
+        <div class="card-gradient w-100 p-3 text-start my-3" style="background: #151515;">
+            <h5 class="fw-bold">Resgate</h5>
+            <p>
+                <span>
+          Insira o valor que deseja resgatar para que a transferencia seja realizada e enviada para sua bancária
+          cadastrada.
+          A conta destino deve ser vinculada ao mesmo CPF/CNPJ do cadastro.
+        </span>
+            </p>
+            <nick-money class="beta-mr-50" [disabled]="rescueDone == 1" [nickCrudField]="rescue.value">
+            </nick-money>
+            <p class="mt-3">
+                <span>Tarifa PIX : R$ 1,00</span>
+            </p>
+            <div class="d-flex justify-content-end">
+                <button class="btn-arena-orange arena-orange-gradient-background p-1-3 border-0 rounded-3" style="color: white">Resgatar</button>
+            </div>
+        </div>
+    </div>
+</section>

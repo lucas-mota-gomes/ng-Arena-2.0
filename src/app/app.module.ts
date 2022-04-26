@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { LigaComponent } from './liga/liga.component';
 import { EditComponent } from './liga/edit/edit.component';
 import { WalletComponent } from './wallet/wallet/wallet.component';
+import { ListTournamentComponent } from './afiliado/list-tournament/list-tournament.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LigaComponent,
     EditComponent,
-    WalletComponent
+    WalletComponent,
+    ListTournamentComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,7 @@ import { WalletComponent } from './wallet/wallet/wallet.component';
     CommonModule
   ],
   providers: [],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
